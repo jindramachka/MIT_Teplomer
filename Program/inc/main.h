@@ -8,8 +8,8 @@
 #define TRIGGER_2 GPIO_PIN_4
 
 #define BTN_PORT GPIOD
-#define BTN_1 GPIO_PIN_2
-#define BTN_2 GPIO_PIN_3
+#define BTN_1 GPIO_PIN_3
+#define BTN_2 GPIO_PIN_2
 
 #define LOW(PIN) GPIO_WriteLow(DHT11_PORT, PIN)
 #define HIGH(PIN) GPIO_WriteHigh(DHT11_PORT, PIN)

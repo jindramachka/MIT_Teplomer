@@ -59,14 +59,14 @@ INTERRUPT_HANDLER(EXTI_PORTC_IRQHandler, 5)
 
 INTERRUPT_HANDLER(EXTI_PORTD_IRQHandler, 6)
 {
-    if (PUSH(BTN_1) && displayed_temp_sensor == 1) {displayed_temp_sensor = 2; sprintf(temp_sensor_str , "Vnejsi  ");}
-    else if (PUSH(BTN_1) && displayed_temp_sensor == 2) {displayed_temp_sensor = 1; sprintf(temp_sensor_str, "Vnitrni ");}
+    if (PUSH(BTN_2) && displayed_temp_sensor == 1) {displayed_temp_sensor = 2; sprintf(temp_sensor_str , "Vnejsi  ");}
+    else if (PUSH(BTN_2) && displayed_temp_sensor == 2) {displayed_temp_sensor = 1; sprintf(temp_sensor_str, "Vnitrni ");}
 
-    if (PUSH(BTN_2) && backlight == 1) {
+    if (PUSH(BTN_1) && backlight == 1) {
         backlight = 0;
         LCD_I2C_NoBacklight();
     } 
-    else if (PUSH(BTN_2) && backlight == 0) {
+    else if (PUSH(BTN_1) && backlight == 0) {
         backlight = 1;
         LCD_I2C_Backlight();
     }
@@ -74,7 +74,7 @@ INTERRUPT_HANDLER(EXTI_PORTD_IRQHandler, 6)
 
 void setup(void)
 {
-    CLK_HSIPrescalerConfig(CLK_PRESCALER_HSIDIV1);      // taktovani MCU na 16MHz
+    CLK_HSIPrescalerConfig(CLK_PRESCALER_HSIDIV1);      // taktovani MCU na 16MHz sdf
     GPIO_Init(BTN_PORT, BTN_1, GPIO_MODE_IN_PU_IT);
     GPIO_Init(BTN_PORT, BTN_2, GPIO_MODE_IN_PU_IT);
     GPIO_Init(DHT11_PORT, READ_1, GPIO_MODE_IN_PU_IT);
@@ -140,11 +140,11 @@ void reading_loop(GPIO_Pin_TypeDef TRIGGER_PIN, struct temperature *max_temp, st
         case DATA:
             if (milis() - lasttime > 6) {
                 lasttime = milis();
-                for (int i = 0; i < index; ++i) {
-                    printf("%d: %d, ", i, times[i]) ;
-                }
 
                 // Testování funkce pomocí tisknutí do sériového monitoru připojeného přes UART
+                // for (int i = 0; i < index; ++i) {
+                //     printf("%d: %d, ", i, times[i]) ;
+                // }
                 // printf("\ndata: 0b ");
                 // uint64_t m = 1LL << 39;
                 // uint8_t i = 0;

@@ -43,3 +43,4 @@ _setup
 _LCD_I2C_SetCursor
 _LCD_I2C_Print
 _LCD_I2C_Backlight
+_UART1_GetFlagStatus
